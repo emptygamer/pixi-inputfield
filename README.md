@@ -37,5 +37,10 @@ textInput.x = 14;
 textInput.y = 8;
 ```
 
+**3. Get edited values.**
+```javascript
+let editedText = textInput.GetInputText();
+console.log(editedText);
+```
 ## Demo
 ![demo_gif](./demo.gif)
