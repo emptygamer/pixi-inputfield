@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/tsjs/",
+      "target": "es6",
+      "module": "CommonJS",
+      "sourceMap": true,
+      "strict": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceRoot": "./src/"
+  }
+}
