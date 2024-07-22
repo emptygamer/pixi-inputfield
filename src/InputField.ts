@@ -2,42 +2,57 @@ import * as PIXI from "pixi.js";
 
 export class InputField extends PIXI.Text{
     private inputElement?:HTMLInputElement;
-    private backgroundDisplay?:PIXI.DisplayObject;
+    private backgroundDisplay?:PIXI.Sprite|PIXI.Graphics|PIXI.Text;
     private isEditing = false;
     private preEditIndex = 0;
     public editCursor : string =  "|";
+    
     constructor(
-        text?: string,
-        style?: PIXI.TextStyleOptions,
-        backgroundDisplay?:PIXI.DisplayObject,
-        inputElement?:HTMLInputElement,
-        canvas?: HTMLCanvasElement
+        options?:Partial<{
+            text:string,
+            style:PIXI.TextStyle,
+            backgroundDisplay:PIXI.Sprite|PIXI.Graphics|PIXI.Text,
+            inputElement:HTMLInputElement
+        }>
     ){
-        super(text, style, canvas);
-
-        if(inputElement){
-            this.inputElement = inputElement;
+        super();
+        if(options && options.text){
+            this.text = options.text;
+        }
+        if(options && options.style){
+            this.style = options.style;
+        }
+        if(options && options.inputElement){
+            this.inputElement = options.inputElement;
         }else{
             let _inputElement = document.createElement('input');
-            // _inputElement.style.setProperty("width", "0px");
             _inputElement.style.setProperty("height", "0px");
+            _inputElement.style.setProperty("width", "0px");
+            _inputElement.style.setProperty("padding", "0px");
+            _inputElement.style.setProperty("margin", "0px");
+            _inputElement.style.setProperty("position", "fixed");
             _inputElement.style.setProperty("opacity", "0");
-            _inputElement.style.setProperty("overflow", "visible");
             document.body.appendChild(_inputElement);
             this.inputElement = _inputElement;
         }
-        this.backgroundDisplay = backgroundDisplay ? backgroundDisplay : this;
+
+        if(options && options.backgroundDisplay){
+            this.backgroundDisplay = options.backgroundDisplay;
+        }else{
+            this.backgroundDisplay = this;
+        }
         this.backgroundDisplay.interactive = true;
-        this.backgroundDisplay.buttonMode = true;
-        this.backgroundDisplay.on("click", this._ClickFocus.bind(this));
+        this.backgroundDisplay.on("pointerdown", this._ClickFocus.bind(this));
         this.BindInputElementEvent(this.inputElement);
     }
     private _ClickFocus(e:any){
+        e.preventDefault();
         this.inputElement?.focus();
         this.isEditing=true;
         this._UpdateText(e);
     }
     private _EndEdit(e:any){
+        e.preventDefault();
         this.isEditing=false;
         this._UpdateText(e);
     }
@@ -63,6 +78,7 @@ export class InputField extends PIXI.Text{
             this.text = _text;
         }
     }
+
     public BindInputElementEvent(inputElement:HTMLInputElement){
         if(this.inputElement != undefined){
             this.UnBindInputElementEvent();

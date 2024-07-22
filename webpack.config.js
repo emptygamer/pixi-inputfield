@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'production',
     entry: './dist/tsjs/InputField.js',
     output: {
         library: 'PixiInputField',
