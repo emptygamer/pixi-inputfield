@@ -1,16 +1,16 @@
 {
   "name": "pixi-inputfield",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Simple editable input fields / texts components for PIXI.js.",
   "scripts": {
     "start": "tsc -p tsconfig.json && webpack --config webpack.config.js"
   },
   "dependencies": {
-    "pixi.js": "^8.1.0"
+    "pixi.js": "^8.16.0"
   },
   "devDependencies": {
-    "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
+    "typescript": "^5.9.3",
+    "webpack": "^5.105.4",
     "webpack-cli": "^5.1.4"
   }
 }

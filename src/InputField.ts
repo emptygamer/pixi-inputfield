@@ -66,8 +66,8 @@ export class InputField extends PIXI.Text{
         }
 
         let _editIdx = this.preEditIndex;
-        if(e.target.selectionStart){
-            _editIdx = e.target.selectionStart + _offset;
+        if(typeof e.target.selectionStart === 'number'){
+            _editIdx = e.target.selectionStart + _offset >= 0 ? e.target.selectionStart + _offset : 0;
             this.preEditIndex = _editIdx;
         }
         let _text = this.inputElement?.value as string;

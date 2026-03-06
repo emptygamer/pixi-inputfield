@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+      "rootDir": "./src",
       "outDir": "./dist/tsjs/",
       "target": "es6",
       "module": "CommonJS",
