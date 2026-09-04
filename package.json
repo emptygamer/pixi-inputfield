@@ -11,6 +11,7 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "webpack": "^5.106.2",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.2",
+    "fast-uri": ">=3.1.6"
   }
 }
